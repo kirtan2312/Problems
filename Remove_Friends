@@ -1,0 +1,62 @@
+package Programs;
+
+
+
+import java.util.*;
+public class Remove_Friends {
+    public static void main(String[] args) {
+
+        Scanner sc=new Scanner(System.in);
+        int test_cases=Integer.parseInt(sc.nextLine());
+        for (int i=0;i<test_cases;i++)
+        {
+            //total friends and remove friends
+            String total_friends_remove_friends=sc.nextLine();
+            String list[]=total_friends_remove_friends.split(" ");
+            ArrayList<Integer> friends_remove=new ArrayList<Integer>();
+            for(int j=0;j<list.length;j++)
+            {
+                friends_remove.add(Integer.parseInt(list[j]));
+            }
+
+
+            //popularity of friends
+            String popularity=sc.nextLine();
+            String list2[]=popularity.split(" ");
+            ArrayList<Integer> popularityOfFriends=new ArrayList<Integer>();
+            for(int j=0;j<list2.length;j++)
+            {
+                popularityOfFriends.add(Integer.parseInt(list2[j]));
+            }
+
+            int remove=friends_remove.get(1);
+
+            while(remove>0)
+           {
+                for(int j=0;j<popularityOfFriends.size()-1;j++)
+                {
+                        if(remove==0 || remove<0)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            if(popularityOfFriends.get(j)<popularityOfFriends.get(j+1))
+                            {
+//                                System.out.println(popularityOfFriends.get(j)+" : "+popularityOfFriends.get(j+1));
+                                popularityOfFriends.remove(j);
+                                remove--;
+                            }
+                            else if(popularityOfFriends.get(j)==popularityOfFriends.get(popularityOfFriends.size()-2))
+                            {
+                                popularityOfFriends.remove(0);
+                                remove--;
+                            }
+                        }
+                }
+
+            }
+            System.out.println(popularityOfFriends);
+        }
+    }
+}
